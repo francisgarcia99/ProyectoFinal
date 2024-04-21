@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from .forms import FormularioUsuario
+from django.utils.datastructures import MultiValueDictKeyError
 from usuario.models import Usuario
 from django import forms
 from django.contrib.auth import login,logout,authenticate
@@ -15,8 +16,37 @@ class VRegistro(View):
         return render(request,"registro/registro.html",{"form":form,"custom_form":custom_form})
     
     def post(self,request):
+        form = CustomUserCreationForm(request.POST)
+        custom_form = FormularioUsuario(request.POST, request.FILES)
+
+        if form.is_valid() and custom_form.is_valid():
+            usuario = form.save()
+            usuarioapp = custom_form.save(commit=False)
+            if 'imagen' in request.FILES:
+                usuario.imagen = request.FILES['imagen']
+            usuarioapp.user = usuario
+            usuarioapp.save()
+            login(request, usuario)
+            return redirect('Home')
+        else:
+            for msg in form.error_messages:
+                messages.error(request, form.error_messages[msg])
+            
+            return render(request, "registro/registro.html", {"form": form, "custom_form": custom_form})
+
+
+class VRegistro2(View):
+    def get(self, request):
+        form=CustomUserCreationForm()
+        custom_form=FormularioUsuario()
+        return render(request,"registro/registro.html",{"form":form,"custom_form":custom_form})
+    
+    def post(self,request):
         form=CustomUserCreationForm(request.POST)
         custom_form=FormularioUsuario(request.POST, request.FILES)
+
+
+    
         if form.is_valid() and custom_form.is_valid():
             usuario=form.save()
             usuarioapp= custom_form.save(commit=False)
@@ -55,6 +85,8 @@ def iniciar_sesion(request):
 class CustomUserCreationForm(UserCreationForm):
     def clean_password1(self):
         password1 = self.cleaned_data.get('password1')
+        if len(password1) < 12:
+            raise forms.ValidationError("La contraseña debe tener al menos 12 caracteres.")
         if not re.search(r'[A-Z]', password1):
             raise forms.ValidationError("La contraseña debe contener al menos una mayúscula.")
         if not re.search(r'\d', password1):
