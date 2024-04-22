@@ -21,6 +21,9 @@ class VRegistro(View):
 
         if form.is_valid() and custom_form.is_valid():
             usuario = form.save()
+            email = custom_form.cleaned_data.get('email')
+            usuario.email = email
+            usuario.save()
             usuarioapp = custom_form.save(commit=False)
             if 'imagen' in request.FILES:
                 usuario.imagen = request.FILES['imagen']
@@ -69,7 +72,7 @@ def iniciar_sesion(request):
         if form.is_valid():
             username=form.cleaned_data.get("username")
             password=form.cleaned_data.get("password")
-            usuario=authenticate(username=username,password=password)
+            usuario=authenticate(request=request,username=username,password=password)
             
             if usuario is not None:
                 login(request, usuario)

@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
+import sys
+sys.path.append("C:\\Users\\Usuario\\Desktop\\configuracion")
+from config import EMAIL_HOST_PASSWORD
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,7 +47,14 @@ INSTALLED_APPS = [
     'autenticacion',
     'usuario',
     'monitoreo',
+    'axes',
     
+]
+
+LOGIN_REDIRECT_URL = '/autenticacion/iniciar_sesion/'
+AUTHENTICATION_BACKENDS = [
+    'axes.backends.AxesBackend',
+    'django.contrib.auth.backends.ModelBackend',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'axes.middleware.AxesMiddleware',
 ]
 
 ROOT_URLCONF = 'proyecto.urls'
@@ -141,4 +153,13 @@ EMAIL_HOST="smtp.gmail.com"
 EMAIL_USE_TLS=True
 EMAIL_PORT=587
 EMAIL_HOST_USER="francisgaarcia@gmail.com"
-EMAIL_HOST_PASSWORD=""
+EMAIL_HOST_PASSWORD=EMAIL_HOST_PASSWORD
+# settings.py
+
+AXES_FAILURE_LIMIT = 3 
+AXES_LOCK_OUT_AT_FAILURE = True  
+AXES_LOCKOUT_PARAMETERS= ["username"]
+AXES_ENABLE_ADMIN=True
+AXES_RESET_ON_SUCCESS=True
+#resetea todos los bloqueos
+#python manage.py axes_reset
