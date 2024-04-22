@@ -11,12 +11,19 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-
 import sys
-sys.path.append("C:\\Users\\Usuario\\OneDrive\\Final\\configuracion")
-from config import EMAIL_HOST_PASSWORD
+try:
+    # Intenta importar el módulo config desde el directorio especificado
+    sys.path.append("C:\\Users\\Usuario\\OneDrive\\Final\\configuracion")
+    from config import PASSWORD
+except ImportError:
+    # Captura la excepción si no se puede importar el módulo config
+    print("Error: No se pudo importar el módulo config")
+    sys.exit(1)
 
 
+
+EMAIL_HOST_PASSWORD=PASSWORD
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
