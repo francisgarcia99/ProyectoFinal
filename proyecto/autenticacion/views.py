@@ -98,3 +98,8 @@ class CustomUserCreationForm(UserCreationForm):
 def cerrar_sesion(request):
     logout(request)
     return redirect('Home')
+
+def monitoreo(request):
+    context = {}
+    #return redirect('Home')
+    return render(request,"monitor/monitoreo.html")
