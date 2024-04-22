@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator, MaxLengthValidator, MinValueValidator, MaxValueValidator
 # Create your models here.
+#validaciones
 
 def validate_telefono_length(value):
     if len(str(value)) != 8:
