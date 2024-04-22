@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'homeapp',
     'autenticacion',
     'usuario',
+    'monitoreo',
 ]
 
 MIDDLEWARE = [

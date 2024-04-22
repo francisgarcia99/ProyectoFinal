@@ -1,0 +1,53 @@
+{% extends "homeapp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+<!-- Start Hero Section -->
+<div class="hero" style="max-height: 300px;">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-5">
+                <div class="intro-excerpt" style="margin-top: -10px;">
+                    
+                    <p class="mb-4" style="margin-bottom: 0; margin-top: -10px;">"Vision Advance desarrolla soluciones innovadoras para detectar y prevenir anomalías en imágenes industriales, mejorando la eficiencia y seguridad de los procesos empresariales."</p>
+                </div>
+            </div>
+            <div class="col-lg-7" style="margin-top: -10px;">
+                <div class="hero-img-wrap" style="text-align: right; margin-top: -10px;">
+                    <div style="margin-top: -10px;">
+                        <img src="{% static 'homeapp/images/botella.png' %}" class="img-fluid" style="max-width: 50%; margin-top: -10px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- End Hero Section -->
+    <!-- Start Why Choose Us Section -->
+    <div class="why-choose-section" style="margin-top: -50px;">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-lg-6">
+                    <h2 class="section-title">MONITOREO</h2>
+                    <p class="mb-4"style="text-align: justify;">En </p>
+
+
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="img-wrap">
+                        <img src="{% static 'homeapp/images/home.jfif'%}" alt="Image" class="img-fluid">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Why Choose Us Section -->
+
+
+
+    {% endblock %}

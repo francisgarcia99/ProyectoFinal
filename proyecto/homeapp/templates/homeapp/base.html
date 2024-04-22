@@ -45,8 +45,15 @@
 							<a class="nav-link" href="{% url 'Home' %}">Home</a>
 						</li>
 						{% if user.is_authenticated %}
-						<li><a class="nav-link" href="shop.html">Monitoreo</a></li>
+						<li><a class="nav-link" href="{% url 'Monitoreo' %}">Monitoreo</a></li>
 						<li><a class="nav-link" href="{% url 'Cerrar_sesion' %}">Cerrar Sesión</a></li>
+							{% if usuario.imagen %}
+								<img src="{{ usuario.imagen.url }}" alt="Imagen de usuario">
+							{% else %}
+								<p></p>
+							{% endif %}
+
+						
 						{% else %}
 						<li><a class="nav-link" href="{% url 'Iniciar_sesion' %}">Iniciar Sesión</a></li>
 						<li><a class="nav-link" href="{% url 'Autenticacion' %}">Crear Usuario</a></li>
