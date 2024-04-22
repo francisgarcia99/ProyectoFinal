@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 
 import sys
-sys.path.append("C:\\Users\\Usuario\\Desktop\\configuracion")
+sys.path.append("C:\\Users\\Usuario\\OneDrive\\Final\\configuracion")
 from config import EMAIL_HOST_PASSWORD
 
 
