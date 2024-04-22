@@ -14,8 +14,8 @@ from pathlib import Path
 import sys
 try:
     # Intenta importar el módulo config desde el directorio especificado
-    sys.path.append("C:\\Users\\Usuario\\OneDrive\\Final\\configuracion")
-    from config import PASSWORD
+    sys.path.append("C:\\Users\\Usuario\\OneDrive\\configuracion")
+    from config import PASSWORD # type: ignore
 except ImportError:
     # Captura la excepción si no se puede importar el módulo config
     print("Error: No se pudo importar el módulo config")
